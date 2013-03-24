@@ -11,7 +11,7 @@ private:
   bool debug_; /* Enables debugging output */
 
   /* Add member variables here */
-  uint64_t the_estimated_rtt = 60;
+  uint64_t the_estimated_rtt = 72;
   float the_throughput = 0.0;
   uint64_t update_time = 0; //when to update
   uint64_t update_interval = 25; //how often to update throughput
