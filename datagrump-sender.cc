@@ -45,7 +45,7 @@ int main( int argc, char *argv[] )
       unsigned int window_size = controller.window_size();
 
       /* fill up window */
-      while ( sequence_number - next_ack_expected < window_size ) {
+      while ( sequence_number - next_ack_expected < (uint64_t) window_size ) {
 	Packet x( destination, sequence_number++ );
 	sock.send( x );
 	controller.packet_was_sent( x.sequence_number(),
@@ -60,6 +60,7 @@ int main( int argc, char *argv[] )
 	throw string( "poll returned error." );
       } else if ( packet_received == 0 ) { /* timeout */
 	/* send a packet */
+        controller.timeout();
 	Packet x( destination, sequence_number++ );
 	sock.send( x );
 	controller.packet_was_sent( x.sequence_number(),
